@@ -40,7 +40,7 @@ const Page = () => {
       await signUp?.prepareEmailAddressVerification({ strategy: "email_code" });
 
       router.push({
-        pathname: "/verify/[phone]",
+        pathname: "/verify/[email]",
         params: { phone: fullPhoneNumber },
       });
     } catch (err) {
@@ -86,6 +86,8 @@ const Page = () => {
               placeholder="Email address"
               placeholderTextColor={Colors.gray}
               value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
             />
           </View>
 

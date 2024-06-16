@@ -53,7 +53,7 @@ const Page = () => {
         });
 
         router.push({
-          pathname: "/verify/[phone]",
+          pathname: "/verify/[email]",
           params: { phone: fullPhoneNumber, signIn: "true" },
         });
       } catch (error) {
