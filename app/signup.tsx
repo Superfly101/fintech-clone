@@ -16,6 +16,7 @@ import {
 } from "react-native";
 
 const Page = () => {
+  const [email, setEmail] = useState("");
   const [countryCode, setCountryCode] = useState("+234");
   const [phoneNumber, setPhoneNumber] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
@@ -26,20 +27,17 @@ const Page = () => {
     const fullPhoneNumber = `${countryCode}${phoneNumber}`;
 
     try {
-      await signUp!.create({
-        phoneNumber: fullPhoneNumber,
-      });
-
-      await signUp!.preparePhoneNumberVerification({ strategy: "phone_code" });
-
-      // await signUp?.create({
-      //   firstName: "Daniel",
-      //   lastName: "Ukoha",
-      //   emailAddress: "danielukoha101@gmail.com",
-      //   password: "@Joyboy999",
+      // await signUp!.create({
+      //   phoneNumber: fullPhoneNumber,
       // });
 
-      // await signUp?.prepareEmailAddressVerification({ strategy: "email_code" });
+      // await signUp!.preparePhoneNumberVerification({ strategy: "phone_code" });
+
+      await signUp?.create({
+        emailAddress: "danielukoha101@gmail.com",
+      });
+
+      await signUp?.prepareEmailAddressVerification({ strategy: "email_code" });
 
       router.push({
         pathname: "/verify/[phone]",
@@ -62,10 +60,11 @@ const Page = () => {
         <View style={defaultStyles.container}>
           <Text style={defaultStyles.header}>Let's get started!</Text>
           <Text style={defaultStyles.descriptionText}>
-            Enter your phone number. We will send you a confirmation code there.
+            Enter your email address. We will send you a confirmation code
+            there.
           </Text>
 
-          <View style={styles.inputContainer}>
+          {/* <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
               placeholder="Country code"
@@ -79,6 +78,14 @@ const Page = () => {
               keyboardType="numeric"
               value={phoneNumber}
               onChangeText={setPhoneNumber}
+            />
+          </View> */}
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder="Email address"
+              placeholderTextColor={Colors.gray}
+              value={email}
             />
           </View>
 
@@ -118,6 +125,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     fontSize: 20,
     marginRight: 10,
+    flex: 1,
   },
   enabled: {
     backgroundColor: Colors.primary,

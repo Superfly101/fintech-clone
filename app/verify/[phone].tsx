@@ -54,7 +54,7 @@ const Page = () => {
 
   const verifyCode = async () => {
     try {
-      const completedSignUp = await signUp?.attemptPhoneNumberVerification({
+      const completedSignUp = await signUp?.attemptEmailAddressVerification({
         code,
       });
 
