@@ -34,14 +34,14 @@ const Page = () => {
       // await signUp!.preparePhoneNumberVerification({ strategy: "phone_code" });
 
       await signUp?.create({
-        emailAddress: "danielukoha101@gmail.com",
+        emailAddress: email,
       });
 
       await signUp?.prepareEmailAddressVerification({ strategy: "email_code" });
 
       router.push({
         pathname: "/verify/[email]",
-        params: { phone: fullPhoneNumber },
+        params: { email: email },
       });
     } catch (err) {
       if (isClerkAPIResponseError(err)) {
@@ -103,7 +103,7 @@ const Page = () => {
           <TouchableOpacity
             style={[
               defaultStyles.pillButton,
-              phoneNumber !== "" ? styles.enabled : styles.disabled,
+              email !== "" ? styles.enabled : styles.disabled,
               { marginBottom: 20 },
             ]}
             onPress={onSignup}
