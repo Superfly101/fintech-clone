@@ -1,6 +1,13 @@
 import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 
 type Props = {
   text: string;
@@ -14,6 +21,7 @@ const RoundButton = ({ text, icon, onPress }: Props) => {
         styles.container,
         { opacity: pressed ? 0.5 : 1 },
       ]}
+      onPress={onPress}
     >
       <View style={styles.circle}>
         <Ionicons name={icon} size={30} color={Colors.dark} />

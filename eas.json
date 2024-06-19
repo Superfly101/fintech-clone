@@ -8,9 +8,19 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_aGVscGluZy15YWstMjAuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      },
+      "ios": {
+        "simulator": true
+      }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_aGVscGluZy15YWstMjAuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    }
   },
   "submit": {
     "production": {}
