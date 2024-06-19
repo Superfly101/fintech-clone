@@ -1,7 +1,7 @@
-import Dropdown from "@/app/components/Dropdown";
-import RoundButton from "@/app/components/RoundButton";
+import RoundButton from "@/components/RoundButton";
+import Dropdown from "@/components/Dropdown";
 import Colors from "@/constants/Colors";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const Page = () => {
   const balance = 1420;
