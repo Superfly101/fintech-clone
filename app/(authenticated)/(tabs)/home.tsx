@@ -7,10 +7,12 @@ import { defaultStyles } from "@/constants/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { MenuProvider } from "react-native-popup-menu";
 import WidgetList from "@/components/sortableList/WidgetList";
-
+import { useHeaderHeight } from "@react-navigation/elements";
 const Page = () => {
   const { balance, runTransaction, transactions, clearTransactions } =
     useBalanceStore();
+
+  const headerHeight = useHeaderHeight();
 
   const onAddMoney = () => {
     runTransaction({
@@ -23,7 +25,13 @@ const Page = () => {
 
   return (
     <MenuProvider>
-      <ScrollView style={{ backgroundColor: Colors.background }}>
+      <ScrollView
+        style={{ backgroundColor: Colors.background }}
+        contentContainerStyle={{
+          paddingTop: headerHeight,
+          paddingBottom: 60,
+        }}
+      >
         <View style={styles.account}>
           <View style={styles.row}>
             <Text style={styles.balance}>{balance()}</Text>

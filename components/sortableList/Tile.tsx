@@ -135,7 +135,7 @@ const Tile = ({ id }: TileProps) => {
 const styles = StyleSheet.create({
   container: {
     width: SIZE - 20,
-    height: 150,
+    height: 170,
     backgroundColor: "white",
     borderRadius: 20,
     shadowColor: "#000",
