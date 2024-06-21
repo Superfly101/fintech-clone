@@ -6,6 +6,7 @@ import { useBalanceStore } from "@/store/balanceStore";
 import { defaultStyles } from "@/constants/Styles";
 import { Ionicons } from "@expo/vector-icons";
 import { MenuProvider } from "react-native-popup-menu";
+import WidgetList from "@/components/sortableList/WidgetList";
 
 const Page = () => {
   const { balance, runTransaction, transactions, clearTransactions } =
@@ -71,6 +72,10 @@ const Page = () => {
             ))
           )}
         </View>
+
+        <Text style={defaultStyles.sectionHeader}>Widgets</Text>
+
+        <WidgetList />
       </ScrollView>
     </MenuProvider>
   );

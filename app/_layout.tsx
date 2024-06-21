@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import "react-native-reanimated";
 import * as SecureStore from "expo-secure-store";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -158,8 +159,10 @@ const RootLayoutNav = () => {
         publishableKey={CLERK_PUBLISHABLE_KEY!}
         tokenCache={tokenCache}
       >
-        <StatusBar style="dark" />
-        <InitialLayout />
+        <GestureHandlerRootView>
+          <StatusBar style="dark" />
+          <InitialLayout />
+        </GestureHandlerRootView>
       </ClerkProvider>
     </>
   );
