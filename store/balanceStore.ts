@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { zustandStorage } from "./mmkv-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface Transaction {
   id: string;
@@ -22,14 +22,17 @@ export const useBalanceStore = create<BalanceState>()(
       transactions: [],
       runTransaction: (transaction: Transaction) => {
         set((state) => ({
-          transactions: [...state.transactions, transaction],
+          transactions: [transaction, ...state.transactions],
         }));
       },
-      balance: () => 0,
+      balance: () => get().transactions.reduce((acc, t) => acc + t.amount, 0),
       clearTransactions: () => {
         set({ transactions: [] });
       },
     }),
-    { name: "balance", storage: createJSONStorage(() => zustandStorage) }
+    {
+      name: "balance",
+      storage: createJSONStorage(() => AsyncStorage),
+    }
   )
 );
