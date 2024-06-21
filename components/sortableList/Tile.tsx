@@ -6,21 +6,6 @@ import { useBalanceStore } from "@/store/balanceStore";
 import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
-const styles = StyleSheet.create({
-  container: {
-    width: SIZE - 20,
-    height: 150,
-    backgroundColor: "white",
-    borderRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    elevation: 5,
-    padding: 14,
-    alignSelf: "center",
-  },
-});
 interface TileProps {
   id: string;
   onLongPress: () => void;
@@ -146,5 +131,21 @@ const Tile = ({ id }: TileProps) => {
     );
   }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: SIZE - 20,
+    height: 150,
+    backgroundColor: "white",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 5,
+    padding: 14,
+    alignSelf: "center",
+  },
+});
 
 export default Tile;
