@@ -22,50 +22,6 @@ const Dropdown = () => {
 
   return (
     <View>
-      {/* <RoundButton
-        icon={"ellipsis-horizontal"}
-        text="More"
-        onPress={toggleDropdown}
-      /> */}
-
-      {/* <View style={[styles.content, isVisible && { display: "flex" }]}>
-        <Pressable style={styles.item}>
-          <Text style={styles.text}>Statement</Text>
-
-          <View>
-            <Ionicons name="card-sharp" size={25} color={Colors.dark} />
-          </View>
-        </Pressable>
-        <Divider />
-        <Pressable style={styles.item}>
-          <Text style={styles.text}>Converter</Text>
-
-          <View>
-            <MaterialIcons
-              name="currency-exchange"
-              size={25}
-              color={Colors.dark}
-            />
-          </View>
-        </Pressable>
-        <Divider />
-        <Pressable style={styles.item}>
-          <Text style={styles.text}>Background</Text>
-
-          <View>
-            <MaterialIcons name="photo" size={25} color={Colors.dark} />
-          </View>
-        </Pressable>
-        <Divider />
-        <Pressable style={styles.item}>
-          <Text style={styles.text}>Add new account</Text>
-
-          <View>
-            <Ionicons name="folder-open" size={25} color={Colors.dark} />
-          </View>
-        </Pressable>
-      </View> */}
-
       <Menu>
         <MenuTrigger
           children={
@@ -90,6 +46,7 @@ const Dropdown = () => {
               </View>
             }
           />
+          <Divider />
           <MenuOption
             children={
               <View style={styles.item}>
@@ -105,6 +62,7 @@ const Dropdown = () => {
               </View>
             }
           />
+          <Divider />
           <MenuOption
             children={
               <View style={styles.item}>
@@ -116,6 +74,7 @@ const Dropdown = () => {
               </View>
             }
           />
+          <Divider />
           <MenuOption
             children={
               <View style={styles.item}>
@@ -127,6 +86,7 @@ const Dropdown = () => {
               </View>
             }
           />
+          <Divider />
         </MenuOptions>
       </Menu>
     </View>
@@ -137,23 +97,13 @@ const styles = StyleSheet.create({
   trigger: {
     alignItems: "center",
   },
-  content: {
-    backgroundColor: "#fff",
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    position: "absolute",
-    top: 90,
-    right: -4,
-    width: 230,
-    display: "none",
-  },
   item: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
 
     paddingHorizontal: 8,
-    paddingVertical: 8,
+    paddingVertical: 4,
   },
   text: {
     fontSize: 16,
