@@ -24,37 +24,57 @@ enum SignInType {
   Apple,
 }
 
+type EmailCodeFactor = {
+  strategy: "email_code";
+  emailAddressId: string;
+  safeIdentifier: string;
+  primary?: boolean;
+};
+
 const Page = () => {
-  const [countryCode, setCountryCode] = useState("+234");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [countryCode, setCountryCode] = useState("+234");
+  const [email, setEmail] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
   const router = useRouter();
 
   const { signIn } = useSignIn();
 
   const onSignIn = async (type: SignInType) => {
-    if (type === SignInType.Phone) {
+    if (type === SignInType.Email) {
       try {
-        const fullPhoneNumber = `${countryCode}${phoneNumber}`;
-
         const { supportedFirstFactors } = await signIn!.create({
-          identifier: fullPhoneNumber,
+          identifier: email,
         });
 
-        const firstPhoneFactor: any = supportedFirstFactors.find((factor) => {
-          return factor.strategy === "phone_code";
+        const emailCodeFactor = supportedFirstFactors.find(
+          (factor) => factor.strategy === "email_code"
+        );
+
+        const { emailAddressId }: any = emailCodeFactor;
+
+        signIn?.prepareFirstFactor({
+          strategy: "email_code",
+          emailAddressId,
         });
 
-        const { phoneNumberId } = firstPhoneFactor;
+        // const { supportedFirstFactors } = await signIn!.create({
+        //   identifier: email,
+        // });
 
-        await signIn?.prepareFirstFactor({
-          strategy: "phone_code",
-          phoneNumberId,
-        });
+        // const firstPhoneFactor: any = supportedFirstFactors.find((factor) => {
+        //   return factor.strategy === "phone_code";
+        // });
+
+        // const { phoneNumberId } = firstPhoneFactor;
+
+        // await signIn?.prepareFirstFactor({
+        //   strategy: "phone_code",
+        //   phoneNumberId,
+        // });
 
         router.push({
           pathname: "/verify/[email]",
-          params: { phone: fullPhoneNumber, signIn: "true" },
+          params: { email, signingIn: "true" },
         });
       } catch (error) {
         console.log("error", JSON.stringify(error, null, 2));
@@ -77,33 +97,33 @@ const Page = () => {
         <View style={defaultStyles.container}>
           <Text style={defaultStyles.header}>Welcome Back</Text>
           <Text style={defaultStyles.descriptionText}>
-            Enter the phone number associated with your account.
+            Enter the email address associated with your account.
           </Text>
 
           <View style={styles.inputContainer}>
-            <TextInput
+            {/* <TextInput
               style={styles.input}
               placeholder="Country code"
               placeholderTextColor={Colors.gray}
               value={countryCode}
-            />
+            /> */}
             <TextInput
               style={[styles.input, { flex: 1 }]}
-              placeholder="Mobile number"
+              placeholder="Email address"
               placeholderTextColor={Colors.gray}
-              keyboardType="numeric"
-              value={phoneNumber}
-              onChangeText={setPhoneNumber}
+              keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
 
           <TouchableOpacity
             style={[
               defaultStyles.pillButton,
-              phoneNumber !== "" ? styles.enabled : styles.disabled,
+              email !== "" ? styles.enabled : styles.disabled,
               { marginBottom: 20 },
             ]}
-            onPress={() => onSignIn(SignInType.Phone)}
+            onPress={() => onSignIn(SignInType.Email)}
           >
             <Text style={defaultStyles.buttonText}>Continue</Text>
           </TouchableOpacity>

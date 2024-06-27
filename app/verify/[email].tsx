@@ -25,9 +25,9 @@ import {
 } from "react-native-confirmation-code-field";
 
 const Page = () => {
-  const { email, signin } = useLocalSearchParams<{
+  const { email, signingIn } = useLocalSearchParams<{
     email: string;
-    signin: string;
+    signingIn: string;
   }>();
 
   const [code, setCode] = useState("");
@@ -44,7 +44,7 @@ const Page = () => {
 
   useEffect(() => {
     if (code.length === 6) {
-      if (signin === "true") {
+      if (signingIn === "true") {
         verifySignIn();
       } else {
         verifyCode();
